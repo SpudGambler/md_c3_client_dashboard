@@ -1,4 +1,4 @@
-import { ENV } from "../utils/constants";
+import { ENV } from "../utils";
 
 const { BASE_PATH, API_ROUTES } = ENV;
 
@@ -16,6 +16,7 @@ export class Auth {
       },
     };
     console.log(params);
+
     try {
       const response = await fetch(url, params);
       if (!response.ok) {
@@ -51,5 +52,49 @@ export class Auth {
       console.error(error);
       throw error;
     }
+  };
+
+  refreshAccessToken = async (refreshToken) => {
+    const url = `${this.baseApi}/${API_ROUTES.REFRESH_TOKEN}`;
+    console.log(url);
+    const params = {
+      method: "POST",
+      body: JSON.stringify({ token: refreshToken }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    console.log(params);
+    try {
+      const response = await fetch(url, params);
+      if (!response.ok) {
+        throw new Error("Error en la solicitud: " + response.status);
+      }
+      const result = await response.json();
+      return result;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+
+  setAccessToken = (token) => {
+    localStorage.setItem(ENV.JWT.ACCESS, token);
+  };
+
+  setRefreshToken = (token) => {
+    localStorage.setItem(ENV.JWT.REFRESH, token);
+  };
+
+  getAccessToken = () => {
+    return localStorage.getItem(ENV.JWT.ACCESS);
+  };
+
+  getRefreshToken = () => {
+    return localStorage.getItem(ENV.JWT.REFRESH);
+  };
+  removeTokens = () => {
+    localStorage.removeItem(ENV.JWT.ACCESS);
+    localStorage.removeItem(ENV.JWT.REFRESH);
   };
 }

@@ -4,15 +4,18 @@ import { map } from "lodash";
 import {
   Auth,
   Users,
+  Home,
   Services,
   Categories,
   Clients,
   Menu,
 } from "../pages/admin";
 import { AdminLayout } from "../layouts";
+import { useAuth } from "../hooks";
 
-const user = { email: "yanethmejia@gmail.com" };
 export const AdminRouter = () => {
+  console.log(useAuth());
+  const {user} = useAuth();
   const paths = ["/admin", "/admin/home"];
   const loadLayout = (Layout, Page) => {
     return (
@@ -24,30 +27,30 @@ export const AdminRouter = () => {
   return (
     <Routes>
       {!user ? (
-        <Route path='/admin/*' element={loadLayout(AdminLayout, Auth)} />
+        <Route path="/admin/*" element={<Auth/>} />
       ) : (
         <>
           {map(paths, (path) => (
             <Route
               key={path}
               path={path}
-              element={loadLayout(AdminLayout, Auth)}
+              element={loadLayout(AdminLayout, Home)}
             />
           ))}
-          <Route path='/admin/users' element={loadLayout(AdminLayout, Users)} />
+          <Route path="/admin/users" element={loadLayout(AdminLayout, Users)} />
           <Route
-            path='/admin/services'
+            path="/admin/services"
             element={loadLayout(AdminLayout, Services)}
           />
           <Route
-            path='/admin/categories'
+            path="/admin/categories"
             element={loadLayout(AdminLayout, Categories)}
           />
           <Route
-            path='/admin/clients'
+            path="/admin/clients"
             element={loadLayout(AdminLayout, Clients)}
           />
-          <Route path='/admin/menu' element={loadLayout(AdminLayout, Menu)} />
+          <Route path="/admin/menu" element={loadLayout(AdminLayout, Menu)} />
         </>
       )}
     </Routes>

@@ -13,11 +13,11 @@ export const WebRouter = () => {
   };
   return (
     <Routes>
-      <Route path='/' element={loadLayout(ClientLayout, Home)} />
-      <Route path='/contact' element={loadLayout(ClientLayout, Contact)} />
-      <Route path='/category' element={loadLayout(ClientLayout, Categories)} />
-      <Route path='/category/post' element={loadLayout(ClientLayout, Posts)} />
-      <Route path='/services' element={loadLayout(ClientLayout, Services)} />
+      <Route path="/" element={loadLayout(ClientLayout, Home)} />
+      <Route path="/contact" element={loadLayout(ClientLayout, Contact)} />
+      <Route path="/category" element={loadLayout(ClientLayout, Categories)} />
+      <Route path="/category/post" element={loadLayout(ClientLayout, Posts)} />
+      <Route path="/services" element={loadLayout(ClientLayout, Services)} />
     </Routes>
   );
 };

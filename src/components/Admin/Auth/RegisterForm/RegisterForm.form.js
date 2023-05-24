@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+
 export const initialValues = () => {
   return {
     firstname: "",
@@ -10,15 +11,19 @@ export const initialValues = () => {
   };
 };
 
-export function validationSchema() {
+export function validationSchema(){
   return Yup.object({
-    firstname: Yup.string().required("Firstname is required"),
-    lastname: Yup.string().required("Lastname is required"),
-    email: Yup.string().email("Invalid email").required("Email is required"),
-    new_password: Yup.string().required("Password is required"),
+    firstname: Yup.string()
+      .required("El nombre es requerido"),
+    lastname: Yup.string()
+      .required("El apellido requerido"),
+    email: Yup.string()
+      .email("El correo no es válido")
+      .required("Campo requerido"),
+    new_password: Yup.string().required("Campo requerido"),
     confirmPassword: Yup.string()
-      .required("Password is required")
-      .oneOf([Yup.ref("new_password")], "Passwords are diferent"),
+      .required("Campo requerido")
+      .oneOf([Yup.ref("new_password")], "Las contraseñas no coinciden."),
     privacyPolicy: Yup.bool().isTrue(true),
   });
-}
+};

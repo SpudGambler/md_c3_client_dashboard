@@ -1,5 +1,7 @@
-import React from "react";
+import React from 'react'
 
 export const Home = () => {
-  return <div>Estamos en Home</div>;
-};
+  return (
+    <div>Home</div>
+  )
+}

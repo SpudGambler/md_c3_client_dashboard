@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { Tab } from "semantic-ui-react";
-//import { image } from "../../../assets";
+import { image } from "../../../assets/";
 import { RegisterForm, LoginForm } from "../../../components/Admin/Auth";
 import "./Auth.scss";
 
 export const Auth = () => {
+  /* Para que cuando el usuario se registre pase a login */
   const [activeIndex, setActiveIndex] = useState(0);
   const openLogin = () => {
     setActiveIndex(0);
     console.log("Entre en tab");
   };
+
   const panels = [
     {
       menuItem: "Ingresar",
@@ -33,19 +35,11 @@ export const Auth = () => {
     },
   ];
   return (
-    <div className='auth'>
-      <img
-        src={
-          new URL(
-            "https://pbs.twimg.com/profile_images/662762208837939202/NgRLC9sz_400x400.jpg"
-          )
-        }
-        alt=''
-        className='logo'
-      />
+    <div className="auth">
+      <img src={image.logo} alt="" className="logo" />
       <Tab
         panes={panels}
-        className='auth__form'
+        className="auth__form auth-form__tab"
         activeIndex={activeIndex}
         onTabChange={(_, data) => setActiveIndex(data.activeIndex)}
       />

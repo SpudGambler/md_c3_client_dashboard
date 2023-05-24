@@ -1,5 +1,9 @@
 import React from "react";
 
 export const Menu = () => {
-  return <div>Estamos en Menu</div>;
+  return (
+    <div>
+      <h2>Menu works!</h2>
+    </div>
+  );
 };
