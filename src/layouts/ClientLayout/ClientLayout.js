@@ -1,9 +1,10 @@
 import React from "react";
 
-export const ClientLayout = ({ children }) => {
+export const ClientLayout = (props) => {
+  const { children } = props;
   return (
     <div>
-      <h1>ClientLayout works!</h1>
+      <h2>ClientLayout works!</h2>
       <div>{children}</div>
     </div>
   );

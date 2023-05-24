@@ -1,26 +1,35 @@
 import React, { useState } from "react";
 import "./RegisterForm.scss";
+import { Auth } from "../../../../api";
 import { Form } from "semantic-ui-react";
 import { useFormik } from "formik";
 import { initialValues, validationSchema } from "./RegisterForm.form";
 
-export const RegisterForm = () => {
+const authController = new Auth();
+
+export const RegisterForm = (props) => {
+  const { openLogin } = props;
+  const [error, setError] = useState("");
+
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: validationSchema(),
+    validateOnChange: false,
+    validateOnBlur: false,
+
     onSubmit: async (formValue) => {
       try {
         setError("");
-        console.log(formValue);
+        await authController.register(formValue);
+        openLogin();
       } catch (error) {
         setError("Error en el servidor");
       }
     },
   });
-  const [error, setError] = useState("");
   return (
     <Form className='register-form' onSubmit={formik.handleSubmit}>
-      <Form.Group widths={"equal"}>
+      <Form.Group widths='equal'>
         <Form.Input
           fluid
           name='firstname'
@@ -84,7 +93,7 @@ export const RegisterForm = () => {
         content='Registrarse'
         loading={formik.isSubmitting}
       />
-      {error && <p className='register-form_error'>{error}</p>}
+      {error && <p className='register-form__error'>{error}</p>}
     </Form>
   );
 };
