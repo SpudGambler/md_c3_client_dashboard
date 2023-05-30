@@ -1,57 +1,61 @@
-@import '../../scss/index.scss';
+@import "../../scss/index.scss";
 
 $widthLeftMenu: 200px;
 
+.logout {
+  cursor: pointer;
+}
+
 .admin-layout {
-    display: flex;
-    flex-direction: row;
-    max-height: 100vh;
-    min-height: 100vh;
-    background-color: #ffff;
+  display: flex;
+  flex-direction: row;
+  max-height: 100vh;
+  min-height: 100vh;
+  background-color: #ffff;
 
-    &__left {
-        background-color: $background-grey;
-        width: $widthLeftMenu;
+  &__left {
+    background-color: $background-grey;
+    width: $widthLeftMenu;
 
-        .logo {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 30px;
+    .logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 30px;
 
-            img {
-                width: 80%;
-            }
-        }
+      img {
+        width: 80%;
+      }
     }
+  }
 
-    &__right {
-        width: calc(100% - $widthLeftMenu);
-        &-header{
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            padding: 10px;
-            background-color: #ffff;
-            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-            z-index: 1;
+  &__right {
+    width: calc(100% - $widthLeftMenu);
+    &-header {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 10px;
+      background-color: #ffff;
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+      z-index: 1;
 
-            .user {
-                display: flex;
-                align-items: center;
+      .user {
+        display: flex;
+        align-items: center;
 
-                .avatar {
-                    width: 40px;
-                    height: 0px;
-                    border-radius: 50%;
-                    background-color: $background-grey;
-                    margin-right: 10px;
-                }
-            }
+        .avatar {
+          width: 40px;
+          height: 0px;
+          border-radius: 50%;
+          background-color: $background-grey;
+          margin-right: 10px;
         }
-        .content {
-            position: relative;
-            margin: 20px;
-        }
+      }
     }
+    .content {
+      position: relative;
+      margin: 20px;
+    }
+  }
 }

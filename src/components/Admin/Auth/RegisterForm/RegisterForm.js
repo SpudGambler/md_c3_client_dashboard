@@ -89,14 +89,14 @@ export const RegisterForm = (props) => {
     },
   });
   return (
-    <Form className="register-form" onSubmit={formik.handleSubmit}>
-      <Form.Group widths="equal">
+    <Form className='register-form' onSubmit={formik.handleSubmit}>
+      <Form.Group widths='equal'>
         <Form.Input
           fluid
-          name="firstname"
-          label="Nombre(s)"
-          placeholder="First name"
-          autoComplete="firstname"
+          name='firstname'
+          label='Nombre(s)'
+          placeholder='First name'
+          autoComplete='firstname'
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           value={formik.values.firstname}
@@ -104,10 +104,10 @@ export const RegisterForm = (props) => {
         />
         <Form.Input
           fluid
-          name="lastname"
-          label="Apellido(s)"
-          placeholder="Last name"
-          autoComplete="lastname"
+          name='lastname'
+          label='Apellido(s)'
+          placeholder='Last name'
+          autoComplete='lastname'
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           value={formik.values.lastname}
@@ -115,44 +115,45 @@ export const RegisterForm = (props) => {
         />
       </Form.Group>
       <Form.Input
-        name="email"
-        label="Correo"
-        placeholder="Correo electrónico"
-        autoComplete="email"
+        name='email'
+        label='Correo'
+        placeholder='Correo electrónico'
+        autoComplete='email'
         onChange={formik.handleChange}
         value={formik.values.email}
         error={formik.errors.email}
       />
       <Form.Input
-        name="new_password"
-        label="Contraseña"
-        type="password"
-        autoComplete="new_password"
-        placeholder="Contraseña"
+        name='new_password'
+        label='Contraseña'
+        type='password'
+        autoComplete='new_password'
+        placeholder='Contraseña'
         onChange={formik.handleChange}
         value={formik.values.new_password}
         error={formik.errors.new_password}
       />
       <Form.Input
-        name="confirmPassword"
-        label="Repetir contraseña"
-        type="password"
-        autoComplete="confirmPassword"
-        placeholder="Repetir contraseña"
+        name='confirmPassword'
+        label='Repetir contraseña'
+        type='password'
+        autoComplete='confirmPassword'
+        placeholder='Repetir contraseña'
         onChange={formik.handleChange}
         value={formik.values.confirmPassword}
         error={formik.errors.confirmPassword}
       />
-      <Form.Group widths="equal">
+      <Form.Group widths='equal'>
         <Form.Field>
           <label>Selecciona un departamento:</label>
           <Dropdown
-            placeholder="Seleccionar"
+            placeholder='Seleccionar'
             selection
             options={departamentos}
-            value={departamentoSeleccionado}
+            value={formik.values.departament}
             onChange={(_, { value }) => {
               setDepartamentoSeleccionado(value);
+              formik.values.departament = value;
               fetchMunicipios(value);
             }}
           />
@@ -160,19 +161,23 @@ export const RegisterForm = (props) => {
         <Form.Field>
           <label>Selecciona un municipio:</label>
           <Dropdown
-            placeholder="Seleccionar"
+            placeholder='Seleccionar'
             selection
             options={municipios}
-            value={municipioSeleccionado}
-            onChange={(_, { value }) => setMunicipioSeleccionado(value)}
+            value={formik.values.municipality}
+            onChange={(_, { value }) => {
+              setMunicipioSeleccionado(value);
+              formik.values.municipality = municipioSeleccionado;
+              formik.values.municipality = value;
+            }}
             disabled={!departamentoSeleccionado} // Deshabilitar el dropdown de municipios si no se ha seleccionado un departamento
           />
         </Form.Field>
       </Form.Group>
 
       <Form.Checkbox
-        name="privacyPolicy"
-        label="He leído y acepto las politicas de privacidad"
+        name='privacyPolicy'
+        label='He leído y acepto las politicas de privacidad'
         onChange={(_, data) =>
           formik.setFieldValue("privacyPolicy", data.checked)
         }
@@ -180,13 +185,13 @@ export const RegisterForm = (props) => {
         error={formik.errors.privacyPolicy}
       />
       <Form.Button
-        type="submit"
+        type='submit'
         primary
         fluid
-        content="Registrarse"
+        content='Registrarse'
         loading={formik.isSubmitting}
       />
-      {error && <p className="register-form__error">{error}</p>}
+      {error && <p className='register-form__error'>{error}</p>}
     </Form>
   );
 };

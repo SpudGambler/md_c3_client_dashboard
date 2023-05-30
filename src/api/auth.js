@@ -6,6 +6,7 @@ export class Auth {
   baseApi = BASE_PATH;
 
   register = async (data) => {
+    console.log(data);
     const url = `${this.baseApi}/${API_ROUTES.REGISTER}`;
     console.log(url);
     const params = {
@@ -93,6 +94,7 @@ export class Auth {
   getRefreshToken = () => {
     return localStorage.getItem(ENV.JWT.REFRESH);
   };
+
   removeTokens = () => {
     localStorage.removeItem(ENV.JWT.ACCESS);
     localStorage.removeItem(ENV.JWT.REFRESH);

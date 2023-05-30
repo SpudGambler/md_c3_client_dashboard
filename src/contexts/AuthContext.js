@@ -18,9 +18,9 @@ export const AuthProvider = (props) => {
       const { getAccessToken, getRefreshToken } = authController;
       const accessToken = getAccessToken();
       const refreshToken = getRefreshToken();
-      console.log(
+      /* console.log(
         `accessToken = ${accessToken}\nrefreshToken = ${refreshToken}`
-      );
+      ); */
 
       if (!accessToken || !refreshToken) {
         logout();
